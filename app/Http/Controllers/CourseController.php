@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Course;
+use Illuminate\Http\Request;
+
+class CourseController extends Controller
+{
+    public function index() {
+        return view('courses.index');
+    }
+
+    public function show(Course $course) {
+
+        /* Permissão para acessar apenas cursos publicados (status 3) */
+        $this->authorize('published', $course);
+
+        /* Recuperar cursos da mesma categoria */
+        $equivalents = Course::where('category_id', $course->category_id)
+                            ->where('id', '!=', $course->id)
+                            ->where('status', 3)
+                            ->latest('id')
+                            ->take(5)
+                            ->get();
+
+        return view('courses.show', compact('course', 'equivalents'));
+    }
+
+    public function registered(Course $course) {
+        /* Recuperando dados do usuário autenticado em uma relação N:N com students */
+        $course->students()->attach(auth()->user()->id);
+
+        return redirect()->route('courses.status', $course);
+    }
+}
