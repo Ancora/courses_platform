@@ -43,6 +43,24 @@
                 </div>
             </div>
             {{-- dropdown nível --}}
+            {{-- Dropdown Instrutor --}}
+            <div class="relative" x-data="{ open: false }">
+                <div>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-blue-200 font-bold py-2 px-4 rounded mr-2 overflow-hidden focus:outline-none" id="options-menu" aria-expanded="true" aria-haspopup="true" x-on:click="open = true">
+                        <i class="fas fa-chalkboard-teacher text-sm mr-2"></i>
+                        Por Instrutor
+                        <i class="fas fa-chevron-circle-down ml-2"></i>
+                    </button>
+                </div>
+                <div class="origin-top-left absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-blue-300 ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" x-show="open" x-on:click.away="open = false">
+                    @foreach ($users as $user)
+                        <div class="py-1" role="none">
+                            <a class="cursor-pointer block px-4 py-2 text-sm text-blue-700 hover:bg-blue-100 hover:text-blue-900" role="menuitem" wire:click="$set('user_id', {{$user->id}})" x-on:click="open = false">{{$user->name}}</a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            {{-- dropdown instrutor --}}
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-4">

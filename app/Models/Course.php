@@ -40,6 +40,12 @@ class Course extends Model
         }
     }
 
+    public function scopeUser($query, $user_id) {
+        if ($user_id) {
+            return $query->where('user_id', $user_id);
+        }
+    }
+
     /* Mostrar o slug na url, ao invés do id */
     public function getRouteKeyName() {
         return 'slug';

@@ -15,7 +15,7 @@ class PlatformSeeder extends Seeder
     public function run()
     {
         Platform::create([
-            'name' => 'Google Drive',
+            'name' => 'YouTube',
         ]);
 
         Platform::create([
