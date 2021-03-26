@@ -49,6 +49,13 @@
                         <li class="leading-7 mb-1 pl-2 border-l-2 border-b-2 rounded-md @routeIs('instructor.courses.students', $course) border-blue-400 @else border-transparent @endif">
                             <a href="{{route('instructor.courses.students', $course)}}">Alunos Matriculados</a>
                         </li>
+                        {{-- Mostrar link para observações dos cursos reprovados --}}
+                        @if ($course->observation)
+                            <li class="leading-7 mb-1 pl-2 border-l-2 border-b-2 rounded-md @routeIs('instructor.courses.observation', $course) border-blue-400 @else border-transparent @endif">
+                                <a href="{{route('instructor.courses.observation', $course)}}">Curso Reprovado</a>
+                            </li>
+                        @endif
+
                     </ul>
 
                     @switch($course->status)

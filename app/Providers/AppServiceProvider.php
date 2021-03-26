@@ -11,6 +11,8 @@ use App\Models\Section;
 use App\Observers\LessonObserver;
 use App\Observers\SectionObserver;
 
+/* use Illuminate\Pagination\Paginator; */
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -40,5 +42,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('routeIs', function ($expression) {
             return "<?php if(Request::url() == route($expression)): ?>";
         });
+
+        /* Usar Bootstrap */
+        /* Paginator::useBootstrap(); */
     }
 }

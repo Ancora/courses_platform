@@ -52,6 +52,11 @@ class Course extends Model
     }
 
     /* Relacionamentos */
+    /* 1:1 */
+    public function observation() {
+        return $this->hasOne('App\Models\Observation');
+    }
+
     /* 1:N */
     public function opinions() {
         return $this->hasMany('App\Models\Opinion');

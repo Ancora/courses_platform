@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
 
     /*
@@ -254,11 +254,11 @@ return [
             'can'         => 'Acessar Lista de Usuários',
             'active'      => ['admin/users*'],
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'MANUTENÇÃO DE CURSOS'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text'        => 'Aguardando Aprovação',
+            'route'       => 'admin.courses.index',
+            'icon'        => 'fas fa-fw fa-clock',
         ],
         [
             'text' => 'change_password',

@@ -6,7 +6,11 @@
         <section class="h-full w-full py-12 bg-blue-500 bg-opacity-40 shadow-lg mb-2">
             <div class="max-w-xs p-2 md:max-w-2xl md:p-4 lg:max-w-4xl lg:p-8 xl:max-w-7xl xl:p-12 mx-auto grid grid-cols-1 md:grid-cols-2 rounded-md" style="background-image: url({{asset('img/home/bg-app.png')}});">
                 <figure class="w-full h-72 md:h-80 lg:h-72 p-4">
-                    <img class="h-full w-full object-cover rounded-md" src="{{Storage::url($course->image->url)}}" alt="">
+                    @if ($course->image)
+                        <img class="h-full w-full object-cover rounded-md" src="{{Storage::url($course->image->url)}}" alt="">
+                    @else
+                        <img class="h-full w-full object-cover rounded-md" src="{{asset('img/courses/no-image.png')}}" alt="">
+                    @endif
                 </figure>
                 <div class="w-full h-72 md:h-80 lg:h-72 p-4">
                     <ul>
@@ -64,6 +68,19 @@
         {{-- banner header --}}
         {{-- Conteúdo --}}
         <div class="container grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {{-- Mensagens --}}
+            @if (session('info'))
+                <div class="lg:col-span-3" x-data="{open: true}" x-show="open">
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">Atenção!</strong>
+                        <span class="block sm:inline">{{session('info')}}<i class="fas fa-frown"></i></span>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                            <svg x-on:click="open = false" class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                        </span>
+                    </div>
+                </div>
+            @endif
+            {{-- mensagens --}}
             {{-- Esquerdo --}}
             <div class="order-2 lg:col-span-2 lg:order-1">
                 <section class="card bg-blue-500 bg-opacity-40 shadow-lg mb-4 grid grid-cols-1 md:grid-cols-2">
@@ -72,12 +89,11 @@
                         <h1 class="font-bold text-2xl mb-2">Objetivos do Curso</h1>
 
                         <ul>
-                            @foreach ($course->goals as $goal)
-                                <li>
-                                    <i class="fas fa-bullseye mr-4"></i>
-                                    {{$goal->name}}
-                                </li>
-                            @endforeach
+                            @forelse ($course->goals as $goal)
+                                <li><i class="fas fa-bullseye mr-4"></i>{{$goal->name}}</li>
+                            @empty
+                                <li><i class="far fa-frown mr-4"></i>Sem objetivos registrados.</li>
+                            @endforelse
                         </ul>
                     </div>
                     {{-- objetivos --}}
@@ -86,12 +102,11 @@
                         <h1 class="font-bold text-2xl mb-2">Requisitos Necessários</h1>
 
                         <ul>
-                            @foreach ($course->requirements as $requirement)
-                                <li>
-                                    <i class="far fa-check-circle mr-4"></i>
-                                    {{$requirement->name}}
-                                </li>
-                            @endforeach
+                            @forelse ($course->requirements as $requirement)
+                                <li><i class="far fa-check-circle mr-4"></i>{{$requirement->name}}</li>
+                            @empty
+                                <li><i class="far fa-frown mr-4"></i>Sem requisitos registrados.</li>
+                            @endforelse
                         </ul>
                     </div>
                     {{-- requisitos para o curso --}}
@@ -109,7 +124,7 @@
                     <div class="card-body text-blue-400">
                         <h1 class="font-bold text-2xl mb-2">Conteúdo Programático</h1>
 
-                        @foreach ($course->sections as $section)
+                        @forelse ($course->sections as $section)
                             <article class="mb-4 shadow-md bg-transparent"
                             @if ($loop->first)
                                 x-data="{ open: true }"
@@ -131,7 +146,9 @@
                                     </ul>
                                 </div>
                             </article>
-                        @endforeach
+                        @empty
+                            <p><i class="far fa-frown mr-4"></i>Sem conteúdo programático registrado.</p>
+                        @endforelse
                     </div>
                 </section>
                 {{-- conteúdo programático --}}
@@ -153,65 +170,19 @@
                 </section>
                 <section class="card bg-blue-500 bg-opacity-40 shadow-lg mb-4">
                     <div class="card-body text-blue-400">
-                        {{-- Inscrição --}}
-                        @can('registered', $course)
-                            <h1 class="font-bold text-2xl mb-2">Continue aprendendo...</h1>
-                            <a class="btn btn-info btn-block text-2xl font-bold focus:outline-none" href="{{route('courses.status', $course)}}">Acessar Videoaulas</a>
-                        @else
-                            <h1 class="font-bold text-2xl mb-2">Interessado? Inscreva-se...</h1>
-                            <form action="{{route('courses.registered', $course)}}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-primary btn-block text-2xl font-bold focus:outline-none">
-                                    Inscrever-se no Curso
-                                </button>
-                            </form>
-                        @endcan
-                        {{-- inscrição --}}
+                        {{-- Aprovação --}}
+                        <form action="{{route('admin.courses.approved', $course)}}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-block text-2xl font-bold focus:outline-none" style="background-color: green;">
+                                Aprovar Curso
+                            </button>
+                        </form>
+                        {{-- aprovação --}}
+                        {{-- Observações sobre o curso NÃO aprovado --}}
+                        <a href="{{route('admin.courses.observation', $course)}}" class="btn btn-block text-2xl text-white font-bold focus:outline-none" style="background-color: red;">Reprovar Curso</a>
+                        {{-- observações sobre o curso NÃO aprovado --}}
                     </div>
                 </section>
-                <aside class="hidden lg:block card bg-blue-500 bg-opacity-40 shadow-lg mb-4">
-                    <h1 class="px-4 pt-4 text-blue-400 font-bold text-xl">Também pode se interessar por...</h1>
-                    @foreach ($equivalents as $equivalent)
-                        <article>
-                            <a href="{{route('courses.show', $equivalent)}}" class="flex items-center">
-                                <img class="h-32 w-32 object-cover mx-4 my-2 rounded-md shadow-md" src="{{Storage::url($equivalent->image->url)}}" alt="">
-                                <div class="text-blue-200 font-semibold">
-                                    <h1 class="mb-2 text-sm xl:text-md">
-                                        {{Str::limit($equivalent->title, 40)}}
-                                    </h1>
-                                    <div class="flex items-center mb-2">
-                                        <img class="h-8 w-8 xl:h-12 xl:w-12 object-cover rounded-full shadow-lg" src="{{$equivalent->teacher->profile_photo_url}}" alt="{{$equivalent->teacher->name}}">
-                                        <div class="ml-2">
-                                            <p class="text-xs xl:text-sm">{{$equivalent->teacher->name}}</p>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <ul class="flex items-center text-sm">
-                                            <li class="mr-1">
-                                                <i class="{{$equivalent->rating == 0 ? 'far fa-star' : ($equivalent->rating >= 1 ? 'fas fa-star' : 'fas fa-star-half-alt')}} text-yellow-500"></i>
-                                            </li>
-                                            <li class="mr-1">
-                                                <i class="{{$equivalent->rating <= 1 ? 'far fa-star' : ($equivalent->rating >= 2 ? 'fas fa-star' : 'fas fa-star-half-alt')}} text-yellow-500"></i>
-                                            </li>
-                                            <li class="mr-1">
-                                                <i class="{{$equivalent->rating <= 2 ? 'far fa-star' : ($equivalent->rating >= 3 ? 'fas fa-star' : 'fas fa-star-half-alt')}} text-yellow-500"></i>
-                                            </li>
-                                            <li class="mr-1">
-                                                <i class="{{$equivalent->rating <= 3 ? 'far fa-star' : ($equivalent->rating >= 4 ? 'fas fa-star' : 'fas fa-star-half-alt')}} text-yellow-500"></i>
-                                            </li>
-                                            <li class="mr-1">
-                                                <i class="{{$equivalent->rating <= 4 ? 'far fa-star' : ($equivalent->rating == 5 ? 'fas fa-star' : 'fas fa-star-half-alt')}} text-yellow-500"></i>
-                                            </li>
-                                            <p class="text-yellow-500">
-                                                = {{$equivalent->rating}} ({{$equivalent->opinions_count}} aval.)
-                                            </p>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                    @endforeach
-                </aside>
             </div>
             {{-- direito --}}
         </div>
