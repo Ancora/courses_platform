@@ -3,8 +3,8 @@
 @section('title', 'Âncora Cursos - Admin')
 
 @section('content_header')
-<a class="btn btn-success btn-sm float-right" href="{{route('admin.roles.create')}}">Criar Função Administrativa</a>
-    <h1>Lista de Funções Administrativas</h1>
+    <a class="btn btn-success btn-sm float-right" href="{{route('admin.prices.create')}}">Criar Preço</a>
+    <h1>Lista de Preços</h1>
 @stop
 
 @section('content')
@@ -21,19 +21,22 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Valor</th>
                         <th colspan="2"></th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    @forelse ($roles as $role)
+                    @forelse ($prices as $price)
                         <tr>
-                            <td width="10em">{{$role->id}}</td>
-                            <td>{{$role->name}}</td>
+                            <td width="10em">{{$price->id}}</td>
+                            <td>{{$price->name}}</td>
+                            <td>{{$price->value}}</td>
                             <td width="10em">
-                                <a class="btn btn-info btn-sm" href="{{route('admin.roles.edit', $role)}}">Editar</a>
+                                <a class="btn btn-info btn-sm" href="{{route('admin.prices.edit', $price)}}">Editar</a>
                             </td>
                             <td width="10em">
-                                <form action="{{route('admin.roles.destroy', $role)}}" method="POST">
+                                <form action="{{route('admin.prices.destroy', $price)}}" method="POST">
                                     @method('delete')
                                     @csrf
 
@@ -43,7 +46,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">Não há Funções Administrativas registradas</td>
+                            <td colspan="4">Não há Preços registrados</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -52,10 +55,10 @@
     </div>
 @stop
 
-@section('css')
+{{-- @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
     <script> console.log('Hi!'); </script>
-@stop
+@stop --}}

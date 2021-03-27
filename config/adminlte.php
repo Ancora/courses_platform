@@ -256,6 +256,21 @@ return [
         ],
         ['header' => 'MANUTENÇÃO DE CURSOS'],
         [
+            'text'        => 'Categorias',
+            'route'       => 'admin.categories.index',
+            'icon'        => 'fas fa-fw fa-tags',
+        ],
+        [
+            'text'        => 'Níveis',
+            'route'       => 'admin.levels.index',
+            'icon'        => 'fas fa-fw fa-signal',
+        ],
+        [
+            'text'        => 'Preços',
+            'route'       => 'admin.prices.index',
+            'icon'        => 'fas fa-fw fa-dollar-sign',
+        ],
+        [
             'text'        => 'Aguardando Aprovação',
             'route'       => 'admin.courses.index',
             'icon'        => 'fas fa-fw fa-clock',
