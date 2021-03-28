@@ -21,7 +21,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Valor</th>
+                        <th class="float-right" style="margin-right: 20em">Valor</th>
                         <th colspan="2"></th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@
                         <tr>
                             <td width="10em">{{$price->id}}</td>
                             <td>{{$price->name}}</td>
-                            <td>{{$price->value}}</td>
+                            <td class="float-right" style="margin-right: 20em">{{number_format($price->value, 2, ',', '.')}}</td>
                             <td width="10em">
                                 <a class="btn btn-info btn-sm" href="{{route('admin.prices.edit', $price)}}">Editar</a>
                             </td>

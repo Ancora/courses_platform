@@ -19,7 +19,7 @@
                     @enderror
 
                     {!! Form::label('value', 'Valor') !!}
-                    {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'Valor do Curso...']) !!}
+                    {!! Form::number('value', null, ['class' => 'form-control', 'placeholder' => 'Valor do Curso...', 'step' => '0.01']) !!}
                     @error('value')
                         <span class="text-danger text-sm"><strong>{{$message}}</strong></span>
                     @enderror

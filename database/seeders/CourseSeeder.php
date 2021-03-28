@@ -8,6 +8,7 @@ use App\Models\Description;
 use App\Models\Goal;
 use App\Models\Image;
 use App\Models\Lesson;
+use App\Models\Opinion;
 use App\Models\Requirement;
 use App\Models\Section;
 use Illuminate\Database\Seeder;
@@ -40,6 +41,10 @@ class CourseSeeder extends Seeder
             ]);
 
             Audience::factory(4)->create([
+                'course_id' => $course->id,
+            ]);
+
+            Opinion::factory(10)->create([
                 'course_id' => $course->id,
             ]);
 

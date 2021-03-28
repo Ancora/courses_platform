@@ -135,6 +135,9 @@
                     </div>
                 </section>
                 {{-- conteúdo programático --}}
+                {{-- Comentários e Avaliações --}}
+                @livewire('courses-opinions', ['course' => $course])
+                {{-- comentários e avaliações --}}
             </div>
             {{-- esquerdo --}}
             {{-- Direito --}}

@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Course;
+use App\Models\Opinion;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Permission\Models\Role;
@@ -50,6 +51,15 @@ class CoursePolicy
             return true;
         } else {
             return false;
+        }
+    }
+
+    /* Não permitir que o usuário envie mais de um comentário/avaliação */
+    public function rated(User $user, Course $course) {
+        if (Opinion::where('user_id', $user->id)->where('course_id', $course->id)->count()) {
+            return false;
+        } else {
+            return true;
         }
     }
 }
