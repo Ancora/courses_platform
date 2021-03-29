@@ -59,6 +59,11 @@ class CourseStatus extends Component
         /* Altera o ícone na seção das listas de lições */
         $this->course = Course::find($this->course->id);
     }
+
+    /* Baixar recursos da lição */
+    public function download() {
+        return response()->download(storage_path('app/public/' . $this->current->resource->url));
+    }
     /* métodos */
 
     /* PROPRIEDADES */

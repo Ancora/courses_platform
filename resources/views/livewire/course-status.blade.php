@@ -102,20 +102,30 @@
                         </div>
                     @endif
                     {{-- dados da lição --}}
-                    {{-- Status da Lição --}}
-                    <div class="flex items-center my-4 cursor-pointer" wire:click="completed">
-                        @if ($current->completed)
-                            <i class="fas fa-toggle-on text-2xl text-blue-200"></i>
-                        @else
-                            <i class="fas fa-toggle-off text-2xl"></i>
+                    <div class="flex justify-between my-4">
+                        {{-- Status da Lição --}}
+                        <div class="flex items-center cursor-pointer" wire:click="completed">
+                            @if ($current->completed)
+                                <i class="fas fa-toggle-on text-2xl text-blue-200"></i>
+                            @else
+                                <i class="fas fa-toggle-off text-2xl"></i>
+                            @endif
+                            @if ($current->completed)
+                                <p class="text-sm ml-2 text-blue-200">Marcar esta unidade como NÃO finalizada.</p>
+                            @else
+                                <p class="text-sm ml-2">Marcar esta unidade como finalizada.</p>
+                            @endif
+                        </div>
+                        {{-- status da lição --}}
+                        {{-- Download de Recursos --}}
+                        @if ($current->resource)
+                            <div class="flex items-center cursor-pointer hover:text-blue-200" wire:click="download">
+                                <i class="fas fa-download text-base"></i>
+                                <p class="text-sm ml-2">Baixar Recursos</p>
+                            </div>
                         @endif
-                        @if ($current->completed)
-                            <p class="text-sm ml-2 text-blue-200">Marcar esta unidade como NÃO finalizada.</p>
-                        @else
-                            <p class="text-sm ml-2">Marcar esta unidade como finalizada.</p>
-                        @endif
+                        {{-- download de recursos --}}
                     </div>
-                    {{-- status da lição --}}
                     {{-- Navegação (Anterior/Próxima) --}}
                     <div class="card bg-blue-500 bg-opacity-40 shadow-lg mb-4">
                         <div class="card-body border border-blue-600 rounded-md flex text-blue-200 font-bold" x-show="open">
