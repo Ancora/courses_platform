@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Course;
+use App\Models\Opinion;
 use Livewire\Component;
 
 class CoursesOpinions extends Component

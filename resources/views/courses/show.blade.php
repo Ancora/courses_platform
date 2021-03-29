@@ -55,6 +55,9 @@
                                         = {{$course->rating}} ({{$course->opinions_count}} aval.)
                                     </p>
                                 </ul>
+                                <div class="flex justify-center">
+                                    <a class="text-md" href="#opinions">Ver Avaliações...</a>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -124,7 +127,7 @@
                                     <ul>
                                         @foreach ($section->lessons as $lesson)
                                             <li>
-                                                <i class="far fa-circle mr-4"></i>
+                                                <i class="far fa-clipboard mr-4"></i>
                                                 {{$lesson->name}}
                                             </li>
                                         @endforeach
