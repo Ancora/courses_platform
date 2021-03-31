@@ -165,12 +165,27 @@
                             <a class="btn btn-info btn-block text-2xl font-bold focus:outline-none" href="{{route('courses.status', $course)}}">Acessar Videoaulas</a>
                         @else
                             <h1 class="font-bold text-2xl mb-2">Interessado? Inscreva-se...</h1>
-                            <form action="{{route('courses.registered', $course)}}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-primary btn-block text-2xl font-bold focus:outline-none">
-                                    Inscrever-se no Curso
-                                </button>
-                            </form>
+                            @if ($course->price->value == 0)
+                                <form action="{{route('courses.registered', $course)}}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-info btn-block text-2xl font-bold focus:outline-none">
+                                        Ir para este curso, ele é...
+                                        <p>
+                                            Gratuito
+                                        </p>
+                                    </button>
+                                </form>
+                            @else
+                                <form action="{{route('payment.checkout', $course)}}" method="GET">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary btn-block text-2xl font-bold focus:outline-none">
+                                        Compre este curso por:
+                                        <p>
+                                            R$ {{number_format($course->price->value, 2, ',', '.')}}
+                                        </p>
+                                    </button>
+                                </form>
+                            @endif
                         @endcan
                         {{-- inscrição --}}
                     </div>

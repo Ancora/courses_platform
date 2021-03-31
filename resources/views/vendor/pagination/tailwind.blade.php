@@ -24,7 +24,21 @@
 
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
-                <p class="text-sm text-gray-700 leading-5">
+                <p class="text-sm text-blue-400 leading-5">
+                {{-- <p class="text-sm text-gray-700 leading-5"> --}}
+                    <span>Mostrando </span>
+                    {{-- <span>{!! __('Showing') !!}</span> --}}
+                    <span class="font-medium">{{ $paginator->firstItem() }}</span>
+                    <span> de </span>
+                    {{-- <span>{!! __('to') !!}</span> --}}
+                    <span class="font-medium">{{ $paginator->lastItem() }}</span>
+                    <span> em </span>
+                    {{-- <span>{!! __('of') !!}</span> --}}
+                    <span class="font-medium">{{ $paginator->total() }}</span>
+                    <span> registros.</span>
+                    {{-- <span>{!! __('results') !!}</span> --}}
+                </p>
+                {{-- <p class="text-sm text-gray-700 leading-5">
                     {!! __('Showing') !!}
                     <span class="font-medium">{{ $paginator->firstItem() }}</span>
                     {!! __('to') !!}
@@ -32,7 +46,7 @@
                     {!! __('of') !!}
                     <span class="font-medium">{{ $paginator->total() }}</span>
                     {!! __('results') !!}
-                </p>
+                </p> --}}
             </div>
 
             <div>
