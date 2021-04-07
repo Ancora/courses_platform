@@ -7,12 +7,13 @@
                 Mostrar Todos
             </button>
             {{-- todos os cursos --}}
+            <p class="text-blue-200 flex items-center ml-8 mr-2">Filtrar por...</p>
             {{-- Dropdown Categoria --}}
             <div class="relative" x-data="{ open: false }">
                 <div>
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-blue-200 font-bold py-2 px-4 rounded mr-2 overflow-hidden focus:outline-none" id="options-menu" aria-expanded="true" aria-haspopup="true" x-on:click="open = true">
                         <i class="fas fa-tags text-xs mr-2"></i>
-                        Por Categoria
+                        Categoria
                         <i class="fas fa-chevron-circle-down ml-2"></i>
                     </button>
                 </div>
@@ -30,7 +31,7 @@
                 <div>
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-blue-200 font-bold py-2 px-4 rounded mr-2 overflow-hidden focus:outline-none" id="options-menu" aria-expanded="true" aria-haspopup="true" x-on:click="open = true">
                         <i class="fas fa-signal text-sm mr-2"></i>
-                        Por Nível
+                        Nível
                         <i class="fas fa-chevron-circle-down ml-2"></i>
                     </button>
                 </div>
@@ -48,7 +49,7 @@
                 <div>
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-blue-200 font-bold py-2 px-4 rounded mr-2 overflow-hidden focus:outline-none" id="options-menu" aria-expanded="true" aria-haspopup="true" x-on:click="open = true">
                         <i class="fas fa-chalkboard-teacher text-sm mr-2"></i>
-                        Por Instrutor
+                        Instrutor
                         <i class="fas fa-chevron-circle-down ml-2"></i>
                     </button>
                 </div>

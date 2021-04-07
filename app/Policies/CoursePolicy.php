@@ -22,8 +22,8 @@ class CoursePolicy
         //
     }
 
+    /* Recupera os dados de todos os usuários matriculados no curso e verifica se o usuário autenticado está entre eles */
     public function registered(User $user, Course $course) {
-        /* Recupera os dados de todos os usuários matriculados no curso e verifica se o usuário autenticado está entre eles */
         return $course->students->contains($user->id);
     }
 

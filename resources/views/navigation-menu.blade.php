@@ -270,7 +270,7 @@
                 <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')" class="text-blue-300">
                     Entrar
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')" class="">
+                <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')" class="text-blue-300">
                     Registro
                 </x-jet-responsive-nav-link>
             </div>

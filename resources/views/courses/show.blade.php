@@ -193,7 +193,7 @@
                 <aside class="hidden lg:block card bg-blue-500 bg-opacity-40 shadow-lg mb-4">
                     <h1 class="px-4 pt-4 text-blue-400 font-bold text-xl">Também pode se interessar por...</h1>
                     @foreach ($equivalents as $equivalent)
-                        <article>
+                        <article class="pr-2 mb-2">
                             <a href="{{route('courses.show', $equivalent)}}" class="flex items-center">
                                 <img class="h-32 w-32 object-cover mx-4 my-2 rounded-md shadow-md" src="{{Storage::url($equivalent->image->url)}}" alt="">
                                 <div class="text-blue-200 font-semibold">

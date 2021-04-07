@@ -34,10 +34,10 @@
                         <span>Mostrando </span>
                         {{-- <span>{!! __('Showing') !!}</span> --}}
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                        <span> de </span>
+                        <span> a </span>
                         {{-- <span>{!! __('to') !!}</span> --}}
                         <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                        <span> em </span>
+                        <span> de </span>
                         {{-- <span>{!! __('of') !!}</span> --}}
                         <span class="font-medium">{{ $paginator->total() }}</span>
                         <span> registros.</span>

@@ -27,6 +27,50 @@
                     <p class="font-bold text-2xl text-yellow-500">{{$course->opinions->count()}} aval.</p>
                 @endif
             </div>
+            {{-- Filtrar Avaliações pelo Rating --}}
+            <div class="card mb-2">
+                <div class="card-body text-blue-400">
+                    <h1 class="font-bold text-xl mb-2 flex justify-center">Filtrar por nota...</h1>
+                    <div class="flex items-center justify-between">
+                        <button class="text-yellow-500 bg-transparent border border-solid border-blue-500 hover:bg-yellow-500 hover:text-blue-500 active:bg-blue-600 font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </button>
+                        <button class="text-yellow-500 bg-transparent border border-solid border-blue-500 hover:bg-yellow-500 hover:text-blue-500 active:bg-blue-600 font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </button>
+                        <button class="text-yellow-500 bg-transparent border border-solid border-blue-500 hover:bg-yellow-500 hover:text-blue-500 active:bg-blue-600 font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </button>
+                        <button class="text-yellow-500 bg-transparent border border-solid border-blue-500 hover:bg-yellow-500 hover:text-blue-500 active:bg-blue-600 font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </button>
+                        <button class="text-yellow-500 bg-transparent border border-solid border-blue-500 hover:bg-yellow-500 hover:text-blue-500 active:bg-blue-600 font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {{-- filtrar avaliações pelo rating --}}
 
             @can('registered', $course)
                 @can('rated', $course)
