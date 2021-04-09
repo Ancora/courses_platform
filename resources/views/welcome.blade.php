@@ -5,7 +5,7 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-64">
                     <div class="w-full md:w-3/4 lg:w-1/2 bg-cover rounded-md p-6" style="background-image: url({{asset('img/home/bg-app.png')}})">
                         <h1 class="text-blue-800 font-extrabold text-4xl">Âncora Cursos: os melhores cursos online</h1>
-                        <p class="text-blue-500 text-lg mt-2 mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nam inventore quaerat repellendus quo ab odio aut quas ipsa?</p>
+                        <p class="text-blue-500 text-lg mt-2 mb-4">Lorem ipsum dolores, sit amet consectetur adipisicing elit. Asperiores nam inventore quaerat repellendus quo ab odio aut quas ipsa?</p>
 
                         @livewire('search')
 
