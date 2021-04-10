@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(255);
+        Schema::defaultStringLength(256);
 
         /* Observer */
         Lesson::observe(LessonObserver::class);
